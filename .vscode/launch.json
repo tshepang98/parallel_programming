@@ -1,0 +1,88 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch MedianFilterParallel",
+            "request": "launch",
+            "mainClass": "MedianFilterParallel",
+            "projectName": "CSC2002A1_c3500ee2"
+        },
+        {
+            "type": "java",
+            "name": "Launch External Terminal",
+            "request": "launch",
+            "console": "externalTerminal",
+            "mainClass": ""
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Attach to Remote Program",
+            "request": "attach",
+            "hostName": "<The host name or ip address of remote debuggee>",
+            "port": "<debug port of remote debuggee>"
+        },
+        {
+            "type": "java",
+            "name": "Launch with Arguments Prompt",
+            "request": "launch",
+            "mainClass": "",
+            "args": "${command:SpecifyProgramArgs}"
+        },
+        {
+            "type": "java",
+            "name": "Attach to Remote Program",
+            "request": "attach",
+            "hostName": "<The host name or ip address of remote debuggee>",
+            "port": "<debug port of remote debuggee>"
+        },
+        {
+            "type": "java",
+            "name": "Launch Java Program",
+            "request": "launch",
+            "mainClass": ""
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch MeanFilterParallel",
+            "request": "launch",
+            "mainClass": "MeanFilterParallel",
+            "projectName": "CSC2002A1_c3500ee2"
+        },
+        {
+            "type": "java",
+            "name": "Launch MeanFilterSerial",
+            "request": "launch",
+            "mainClass": "MeanFilterSerial",
+            "projectName": "CSC2002A1_c3500ee2"
+        },
+        {
+            "type": "java",
+            "name": "Launch MedianFilterSerial",
+            "request": "launch",
+            "mainClass": "MedianFilterSerial",
+            "projectName": "CSC2002A1_c3500ee2"
+        }
+    ]
+}
