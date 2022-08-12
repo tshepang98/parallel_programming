@@ -15,7 +15,7 @@ public class MedianFilterParallel extends RecursiveAction{
     private static int sy;
     public static BufferedImage i1;
     public static BufferedImage i2;
-    static final int SEQUENTIAL_CUTOFF= 30000;
+    static final int SEQUENTIAL_CUTOFF= 300000;
     // Processing window size; should be odd.
 
     public MedianFilterParallel(int stX, int StY ,int height,int width,int key, BufferedImage image) {
@@ -30,42 +30,48 @@ public class MedianFilterParallel extends RecursiveAction{
     protected static void meanFilter(){
         int window =(k-1)/2;
         //System.out.println("w "+w+" h "+h);
-        //System.out.println("sx "+sx+" sy "+sy);
+        System.out.println("sx "+sx+" sy "+sy);
         for(int y = (sy+window); y < (sy+h-window); y++) {  
             for(int x = (sx+window); x < (sx+w-window); x++) {
                 //System.out.println("x => "+x+" and y => "+y);
                 //System.out.println("sx => "+sx+" and "+sy+" sy => "+sy);
                 //System.out.println("Width => "+w+" and Height => "+h);
                 //int[] alphaArr = new int[k*k];
-                int[] redArr =new int[k*k];
-                int[] greenArr= new int[k*k];
-                int[] blueArr =new int[k*k];;
-                int Newp;// = i1.getRGB(x, y);
-                int index = 0;
+                if (x >= i1.getWidth()|| y >= i1.getHeight()) {
+                    continue;
+                }
+                else {
+                    int[] redArr =new int[k*k];
+                    int[] greenArr= new int[k*k];
+                    int[] blueArr =new int[k*k];
+                    int Newp;// = i1.getRGB(x, y);
+                    int index = 0;
 
-                for(int j= (y-window); j<= (y+window); j++){
-                    for(int i = (x-window); i <= (x+window); i++){
-                        //System.out.println(" i => "+i+" and j => "+j);
-                        int p = i1.getRGB(i,j);
-                        //alphaArr[index] = ((p>>24)& 0xff);
-                        redArr[index] = ((p>>16)& 0xff);
-                        greenArr[index] = ((p>>8)& 0xff);
-                        blueArr[index] = (p & 0xff);
-                        //System.out.print(" i "+i+" ");
-                        index++;
-                        if (index == ((k*k)-1)) {
-                            index = 0;
+                    for(int j= (y-window); j<= (y+window); j++){
+                        for(int i = (x-window); i <= (x+window); i++){
+                            //System.out.println(" i => "+i+" and j => "+j);
+                            int p = i1.getRGB(i,j);
+                            //alphaArr[index] = ((p>>24)& 0xff);
+                            redArr[index] = ((p>>16)& 0xff);
+                            greenArr[index] = ((p>>8)& 0xff);
+                            blueArr[index] = (p & 0xff);
+                            //System.out.print(" i "+i+" ");
+                            index++;
+                            if (index == ((k*k)-1)) {
+                                index = 0;
+                            }
                         }
                     }
+                    //new Pixel
+                    Arrays.sort(redArr);
+                    Arrays.sort(greenArr);
+                    Arrays.sort(blueArr);
+                    int middle= (k*k)/2;
+                    ///System.out.println("k => "+k);
+                    Newp = (redArr[middle]<<16)| (greenArr[middle]<<8)|blueArr[middle];
+                    i2.setRGB(x, y, Newp);
                 }
-                //new Pixel
-                Arrays.sort(redArr);
-                Arrays.sort(greenArr);
-                Arrays.sort(blueArr);
-                int middle= (k*k)/2;
-                ///System.out.println("k => "+k);
-                Newp = (redArr[middle]<<16)| (greenArr[middle]<<8)|blueArr[middle];
-                i2.setRGB(x, y, Newp);
+               
             }
         }
     }
