@@ -27,10 +27,10 @@ public class MedianFilterParallel extends RecursiveAction{
         sy = StY;
     }
 
-    protected static void meanFilter(){
+    protected static void medianFilter(){
         int window =(k-1)/2;
         //System.out.println("w "+w+" h "+h);
-        System.out.println("sx "+sx+" sy "+sy);
+        //System.out.println("sx "+sx+" sy "+sy);
         for(int y = (sy+window); y < (sy+h-window); y++) {  
             for(int x = (sx+window); x < (sx+w-window); x++) {
                 //System.out.println("x => "+x+" and y => "+y);
@@ -47,8 +47,8 @@ public class MedianFilterParallel extends RecursiveAction{
                     int Newp;// = i1.getRGB(x, y);
                     int index = 0;
 
-                    for(int j= (y-window); j<= (y+window); j++){
-                        for(int i = (x-window); i <= (x+window); i++){
+                    for(int j= (y-window); j<= (y+window); j++) {
+                        for(int i = (x-window); i <= (x+window); i++) {
                             //System.out.println(" i => "+i+" and j => "+j);
                             int p = i1.getRGB(i,j);
                             //alphaArr[index] = ((p>>24)& 0xff);
@@ -82,7 +82,7 @@ public class MedianFilterParallel extends RecursiveAction{
             //System.out.println("Splitheight "+h/2+" and Splitwidth "+w/2);
             //System.out.println("Width => "+w+" and Height => "+h);
             //System.out.println("Compute method => sx "+sx+" sy "+sy);
-            meanFilter();
+            medianFilter();
         }
         else {
 
